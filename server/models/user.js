@@ -27,7 +27,11 @@ const userschema = new Schema ({
         require:true
        
     }
-})
+},
+{
+    timestamps:true,
+}
+)
 
 const User =model('User',userschema)
 
