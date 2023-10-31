@@ -20,13 +20,14 @@ const connectDB = async () => {
 
 // signup
 app.post("/signup", async (req, res) => {
-    const { name, email, mobile, address, password } = req.body;
+    const { name, email, mobile, address, password, gender } = req.body;
     const newUser = new User({
         name,
         email,
         mobile,
         address,
-        password
+        password,
+        gender,
     });
 
     try {
