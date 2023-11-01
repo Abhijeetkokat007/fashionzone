@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from '../../components/Navbar/Navbar';
+import { Link } from 'react-router-dom';
 
-
-
-function Signup() {
+function SignUpUser() {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -11,12 +11,26 @@ function Signup() {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [gender, setGender] = useState('male');
+  const [storedata, setStoredata] = useState({})
 
   const signupdata = async () => {
 
     if(!name){
       alert('Name is required')
     }
+    if(!password){
+        alert('Password is required')
+      }
+      if(!email){
+        alert('Email is required')
+      }
+      if(!address){
+        alert('Address is required')
+      }
+      if(!mobile){
+        alert('Mobile Number is required')
+      }
+      
 
     const data = {
       name,
@@ -29,22 +43,34 @@ function Signup() {
     const response = await axios.post("/signup", data)
 
     alert(response.data.message)
-
-    setName('')
-    setEmail('')
-    setAddress('')
-    setMobile('')
-    setPassword('')
+    if(response?.data?.success){
+        window.location.href = "/login";
+    }
+    else{
+        alert(response?.data?.message)
+        setName('')
+        setEmail('')
+        setAddress('')
+        setMobile('')
+        setPassword('')
+    }
   }
 
-  useEffect({
-    
-  }, [])
+  
+  useEffect(() => {
+    const storageUser = JSON.parse(localStorage.getItem("user") || "{}");
+    console.log(storageUser);
 
+    if (storageUser?.email) {
+      alert("You are already logged in!");
+      window.location.href = "/";
+    }
+  }, []);
 
 
   return (
     <>
+    <Navbar/>
       <div className='signup-form'>
         <h1 className='text-center'>signup</h1>
         <div>
@@ -145,9 +171,11 @@ function Signup() {
           >Signup</button>
         </div>
 
+        <Link to={"/Login"} className='link-form'>Already an Account? </Link>
+
       </div>
     </>
   )
 }
 
-export default Signup
+export default SignUpUser;

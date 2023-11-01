@@ -1,12 +1,15 @@
 body{
     background-color:  #ffe6e6;
+    /* background-color: #fb6565; */
+    margin: 0;
+    padding: 0;
 }
 
 .signup-form{
     /* height: 600px; */
     width: fit-content;
     margin: 20px auto;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     padding: 25px 50px;
     box-shadow: 0 2px 20px 1px rgb(123, 122, 122);
     border-radius: 10px;
@@ -28,7 +31,9 @@ body{
     padding: 5px 40px;
     margin: 30px;
     font-size: 18px;
-    background-color: #fbc3c3;
+    background-color: #ff0000;
+    color: white;
+    cursor: pointer;
     border: none;
     border-radius: 5px;
     width: fit-content;

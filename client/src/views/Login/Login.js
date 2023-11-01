@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
+import { Link, json } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -13,14 +14,30 @@ function Login() {
       password
     }
 
-    const response = await axios.post("/login", user)
+    try{
+      const response = await axios.post("/login", user)
 
-    alert(response?.data?.data)
+      alert(response?.data?.message)
+  
+      if (response?.data?.success) {
+        localStorage.setItem('user', JSON.stringify(response?.data?.data));
+        window.location.href = "/";
+      }
+    }
+    catch(e) {
+console.log(e.message)
+    }
+   
   }
 
-  useEffect({
+  useEffect(()=>{
+    const storedUser = JSON.parse(localStorage.getItem("user") || "{}" );
 
-  }, [])
+    if(storedUser?.email){
+      alert("you are already logged in!");
+      window.location.href = "/"
+    }
+  },[])
 
   return (
     <>
@@ -57,7 +74,7 @@ function Login() {
       <button type='button' onClick={logindata}   className='btn'> Login </button>
       </div>
 
-
+      <Link to={"/signup"} className='link-form'>Creat a new Account? </Link>
 
     </div>
 
