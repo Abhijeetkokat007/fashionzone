@@ -166,7 +166,7 @@ function SignUpUser() {
 
         <div className='text-center'>
           <button type='button'
-            className='btn'
+            className='btn m-3'
             onClick={signupdata}
           >Signup</button>
         </div>

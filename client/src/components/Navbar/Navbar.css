@@ -6,6 +6,7 @@
   margin: 0px;
   padding: 20px;
   font-size: 20px;
+  align-items: center;
 }
 
 .nav-btn {
@@ -37,8 +38,41 @@
 .logo-name{
     text-decoration: none;
     color: black;
+    font-size: 22px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
 }
 .col-dark{
     color: #ff0000;
-    font-size: 30px;
+    font-size: 32px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: start;
+    
+    
+  } 
+
+  .nav-btn {
+    margin: 0 0px;
+    /* background-color: aquamarine; */
+    padding: 15px 0px;
+    display: flex;
+    text-decoration: none;
+    color: black;
+  }
+  .nav-btn:hover {
+    
+    background-color: white;
+    color: #ff0000;
+    transition: 0s;
+    border-radius: 5px;
+  }
+
 }

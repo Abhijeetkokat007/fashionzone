@@ -1,0 +1,35 @@
+.productcard-container{
+    width: 300px;
+    background-color: white;
+margin: 30px 30px;
+padding: 10px 20px;
+padding-bottom: 20px;
+box-shadow: 0  2px 20px 0 rgb(121, 120, 120);
+border-radius: 5px;
+
+}
+.img-card{
+    width: 280px;
+}
+.card-price{
+    font-size: 20px;
+    color: rgb(4, 113, 35);
+}
+.btn-card{
+    width: 100%;
+    
+}
+.card-description{
+    color: rgb(102, 101, 101);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient:vertical ;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-flex{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}

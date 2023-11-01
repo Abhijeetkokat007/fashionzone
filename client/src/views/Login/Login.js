@@ -71,7 +71,7 @@ console.log(e.message)
           />
         </div>
       <div className='text-center'>
-      <button type='button' onClick={logindata}   className='btn'> Login </button>
+      <button type='button' onClick={logindata}   className='btn m-3'> Login </button>
       </div>
 
       <Link to={"/signup"} className='link-form'>Creat a new Account? </Link>
