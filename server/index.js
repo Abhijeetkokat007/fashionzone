@@ -184,7 +184,7 @@ app.post("/order", async (req, res) => {
     res.json({
         success: true,
         data: order1,
-        message: "new product created successfully."
+        message: "new order  successfully."
     })
    }
    catch (e) {

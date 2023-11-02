@@ -4,6 +4,7 @@ import './index.css';
 import Home from './views/Home/Home';
 
 import Login from './views/Login/Login';
+import BuyOrder from './views/BuyOrder/BuyOrder';
 
 import {createBrowserRouter, RouterProvider} from  'react-router-dom';
 import SignUpUser from './views/SignUpUser/SignUpUser';
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
     {
         path: '/orders',
         element: <MyOrders/>
+    },
+    {
+        path: '/buy/:id',
+        element: <BuyOrder/>
     }
 ]);
 

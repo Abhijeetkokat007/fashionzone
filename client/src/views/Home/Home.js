@@ -24,7 +24,7 @@ function Home () {
        <div className="card-flex">
        {
           products.map((product,i) => {
-            const {image, title, description,price} = product;
+            const {_id, image, title, description,price} = product;
 
             return(
              
@@ -33,6 +33,7 @@ function Home () {
               title={title}
               description={description}
               price={price}
+              id={_id}
               />
             )
           })
