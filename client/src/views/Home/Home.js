@@ -6,12 +6,25 @@ import './Home.css'
 
 function Home () {
   const [products, setProducts] = useState([])
+  const [search, setSearch] = useState('');
+
+  async function searchData(){
+    const searchdata = await axios.get(`/products/search?q=${search}`)
+   
+    setProducts(searchdata?.data?.data)
+  }
+  useEffect(()=>{
+    searchData()
+  },[search])
 
   const productsData = async () => {
    
     const response = await axios.get("/products")
     setProducts(response?.data?.data)
+
+  
   }
+  
 
   useEffect(() => {
      productsData()
@@ -21,6 +34,17 @@ function Home () {
        <>
       <Navbar/>
         <h1>home</h1>
+
+<input type="text" 
+className="input-search"
+placeholder="search product " 
+value={search}
+onChange={(e)=>{
+  setSearch(e.target.value)
+}}
+/>
+
+
        <div className="card-flex">
        {
           products.map((product,i) => {

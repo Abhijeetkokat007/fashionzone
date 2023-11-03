@@ -41,13 +41,21 @@ function BuyOrder() {
 
     const placeOrder = async () => {
 
+      if(!shipingaddress){
+        return(
+          alert("please enter shiping address")
+        )
+       
+      }
+
       const currentUser = JSON.parse(localStorage.getItem('user') || '{}')
 
       const orderDetails = {
         user: currentUser._id,
         product: id,
         quentity:quentity,
-        shipingaddress: shipingaddress
+        shipingaddress: shipingaddress,
+        deliverycharge: deliverycharge
       }
 
       const response = await axios.post("/order", orderDetails)

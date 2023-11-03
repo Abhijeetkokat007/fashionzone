@@ -5,13 +5,11 @@ margin: 30px 30px;
 padding: 10px 20px;
 padding-bottom: 20px;
 box-shadow: 0  2px 20px 0 rgb(121, 120, 120);
-border-radius: 5px;
-
+border-radius: 5px
 }
 .img-card{
     width: 280px;
     height: 280px;
-
 }
 .card-price{
     font-size: 20px;
@@ -28,7 +26,7 @@ border-radius: 5px;
 .card-title{
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    -webkit-box-orient:vertical ;
+    -webkit-box-orient:vertical;
     overflow: hidden;
     text-overflow: ellipsis;
 }

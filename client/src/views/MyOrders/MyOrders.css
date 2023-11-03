@@ -1,0 +1,27 @@
+.order-container{
+    position: relative;
+    margin: 20px;
+    box-shadow: 0 2px 20px 0 black;
+    padding: 20px;
+    background-color: white;
+}
+
+.status-order{
+    position: absolute;
+    top: 5px; 
+    right: 5px;
+    width: 70px;
+    padding: 5px 10px;
+    text-align: center;
+    background-color: antiquewhite;
+}
+
+.input-search{
+    display: block;
+    margin: 20px auto;
+    font-size: 18px;
+    padding: 8px 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+}

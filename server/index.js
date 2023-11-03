@@ -170,14 +170,15 @@ app.get("/products/search", async (req, res) => {
 
 // post order 
 app.post("/order", async (req, res) => {
-    const { user, product, shipingaddress, status, quentity } = req.body;
+    const { user, product, shipingaddress, status, quentity , deliverycharge} = req.body;
 
     const neworder = new order({
         user,
         product,
         shipingaddress,
         status,
-        quentity
+        quentity,
+        deliverycharge
     })
    try{
     const order1 = await neworder.save();

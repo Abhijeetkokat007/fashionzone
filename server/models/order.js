@@ -18,9 +18,13 @@ const orderschema = new Schema ({
     default:"pending"
    },
    quentity:{
-      type:String,
+      type:Number,
     default: 1
-   }
+   },
+   deliverycharge:{
+      type:Number,
+       require:true
+      },
 })
 
 const order = model("order", orderschema);
