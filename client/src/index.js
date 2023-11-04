@@ -13,6 +13,11 @@ import MyOrders from './views/MyOrders/MyOrders';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
+    
+    {
+        path: '/orders',
+        element: <MyOrders/>
+    },
     {
         path: '/',
         element: <Home/>
@@ -24,10 +29,6 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login/>
-    },
-    {
-        path: '/orders',
-        element: <MyOrders/>
     },
     {
         path: '/buy/:id',

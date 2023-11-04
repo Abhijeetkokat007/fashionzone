@@ -33,7 +33,7 @@ function Home () {
     return(
        <>
       <Navbar/>
-        <h1>home</h1>
+        
 
 <input type="text" 
 className="input-search"

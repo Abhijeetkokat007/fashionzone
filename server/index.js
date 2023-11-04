@@ -5,6 +5,7 @@ dotenv.config()
 import User from "./models/User.js";
 import product from "./models/product.js";
 import order from "./models/order.js";
+// import order from "./models/order.js";
 
 const app = Express();
 app.use(Express.json());
@@ -245,11 +246,31 @@ app.get("/orders/user/:_id", async (req, res) => {
   });
 })
 
-
 // get /order/status/:_id
  app.patch("/order/status/:_id", async(req, res) => {
     const {_id} = req.params;
     const {status} = req.body;
+
+    const STATUS_BADAGE_COLOUR_MAP = {
+        pending: 0,
+        shipped: 1,
+        delivered: 2,
+        returned: 3,
+        cancelled: 4,
+        rejected: 5
+    }
+    const order2 = await order.findById(_id);
+    const currentStatus = order2.status;
+
+    const currentPriority = STATUS_BADAGE_COLOUR_MAP[currentStatus];
+    const newPriority = STATUS_BADAGE_COLOUR_MAP[status];
+
+    if(currentPriority> newPriority){
+        return res.json({
+            success: false,
+            message: `${status} can not be set order is ${currentStatus}`
+        })
+    }
 
     try{
         const order1= await order.updateOne({_id:_id}, {$set:{status: status}});

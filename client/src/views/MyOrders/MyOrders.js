@@ -3,6 +3,13 @@ import Navbar from '../../components/Navbar/Navbar';
 import { useState, useEffect } from 'react';
 import axios  from 'axios';
 import './MyOrders.css';
+import { Link } from 'react-router-dom';
+
+const STATUS_BADAGE_COLOUR_MAP = {
+  "pending" : "badge-danger",
+  "shipped": "badge-warning",
+  "delivered": "badge-success"
+}
 
 function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -25,7 +32,7 @@ function MyOrders() {
 <Navbar/>
     <div>
 
-      <h1>My Orders</h1>
+      
 <h3>User ID :{localStoragedata._id}</h3>
       {
         orders.map((order, i) => {
@@ -37,7 +44,7 @@ function MyOrders() {
             <p>Address: {shipingaddress} </p>
             <span>Price: {product.price}</span> <span>Quentity: {quentity}</span> <span>Deliverycharge: {deliverycharge}</span>
             <p>Total Pay Amount: {(product.price * quentity)+ deliverycharge} </p>
-            <span className='status-order'>{status}</span>
+            <span className={`status-order ${STATUS_BADAGE_COLOUR_MAP[status]}`}>{status}</span>
             
             </div>
             </>
