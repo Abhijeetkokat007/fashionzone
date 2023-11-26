@@ -26,7 +26,7 @@ const connectDB = async () => {
 };
 
 // signup
-app.post("/signup", async (req, res) => {
+app.post("/api/signup", async (req, res) => {
     const { name, email, mobile, address, password, gender } = req.body;
     const newUser = new User({
         name,
@@ -55,7 +55,7 @@ app.post("/signup", async (req, res) => {
 )
 
 // post login
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -86,7 +86,7 @@ app.post("/login", async (req, res) => {
 })
 
 // post product
-app.post("/product", async (req, res) => {
+app.post("/api/product", async (req, res) => {
     const { title, description, image, price, brand } = req.body;
 
     const newproduct = new product({
@@ -122,7 +122,7 @@ app.post("/product", async (req, res) => {
 })
 
 // get products
-app.get("/products", async (req, res) => {
+app.get("/api/products", async (req, res) => {
     try{
         const products = await product.find()
 
@@ -143,7 +143,7 @@ app.get("/products", async (req, res) => {
 })
 
 // get product
-app.get("/product/:_id", async (req, res) => {
+app.get("/api/product/:_id", async (req, res) => {
     const { _id } = req.params;
     const product1 = await product.findById(_id);
     res.json({
@@ -154,7 +154,7 @@ app.get("/product/:_id", async (req, res) => {
 })
 
 // delet product
-app.delete("/product/:_id", async (req, res) => {
+app.delete("/api/product/:_id", async (req, res) => {
     const { _id } = req.params;
     const product1 = await product.deleteOne({ _id: _id })
     res.json({
@@ -165,7 +165,7 @@ app.delete("/product/:_id", async (req, res) => {
 })
 
 // get product search
-app.get("/products/search", async (req, res) => {
+app.get("/api/products/search", async (req, res) => {
     const { q } = req.query;
     try {
         const product1 = await product.find({ title: { $regex: q, $options: "i" } })
@@ -184,7 +184,7 @@ app.get("/products/search", async (req, res) => {
 })
 
 // post order 
-app.post("/order", async (req, res) => {
+app.post("/api/order", async (req, res) => {
     const { user, product, shipingaddress, status, quentity , deliverycharge} = req.body;
 
     const neworder = new order({
@@ -213,7 +213,7 @@ app.post("/order", async (req, res) => {
 })
 
 // get order
-app.get("/order/:_id", async (req, res) => {
+app.get("/api/order/:_id", async (req, res) => {
     const {_id} = req.params;
     
     try{
@@ -236,7 +236,7 @@ app.get("/order/:_id", async (req, res) => {
 }});
 
 // get orders
-app.get("/orders", async (req, res) => {
+app.get("/api/orders", async (req, res) => {
     const order1 = await order.find().populate("user product");
     order1.forEach((order) => {
         order.user.password = undefined;
@@ -249,7 +249,7 @@ app.get("/orders", async (req, res) => {
 })
 
 // get /order/user/:_id
-app.get("/orders/user/:_id", async (req, res) => {
+app.get("/api/orders/user/:_id", async (req, res) => {
   const {_id} = req.params;
   const order1 = await order.find({user: _id}).populate("user product")
 
@@ -261,7 +261,7 @@ app.get("/orders/user/:_id", async (req, res) => {
 })
 
 // get /order/status/:_id
- app.patch("/order/status/:_id", async(req, res) => {
+ app.patch("/api/order/status/:_id", async(req, res) => {
     const {_id} = req.params;
     const {status} = req.body;
 

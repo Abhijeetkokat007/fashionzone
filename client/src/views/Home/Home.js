@@ -9,7 +9,7 @@ function Home () {
   const [search, setSearch] = useState('');
 
   async function searchData(){
-    const searchdata = await axios.get(`/products/search?q=${search}`)
+    const searchdata = await axios.get(`/api/products/search?q=${search}`)
    
     setProducts(searchdata?.data?.data)
   }
@@ -19,7 +19,7 @@ function Home () {
 
   const productsData = async () => {
    
-    const response = await axios.get("/products")
+    const response = await axios.get("/api/products")
     setProducts(response?.data?.data)
 
   
