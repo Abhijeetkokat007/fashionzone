@@ -6,16 +6,22 @@ import User from "./models/User.js";
 import product from "./models/product.js";
 import order from "./models/order.js";
 // import order from "./models/order.js";
+import path from "path";
 
 const app = Express();
 app.use(Express.json());
+const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 5000;
 
 const connectDB = async () => {
-    const connection = await mongoose.connect(process.env.MONGODB_URI)
+    try{
+        const connection = await mongoose.connect(process.env.MONGODB_URI)
     if (connection) {
         console.log(`mongoDB connected`)
+    }
+    } catch(e){
+        console.log(e.message);
     }
 };
 
@@ -117,7 +123,8 @@ app.post("/product", async (req, res) => {
 
 // get products
 app.get("/products", async (req, res) => {
-    const products = await product.find()
+    try{
+        const products = await product.find()
 
 
     res.json({
@@ -126,6 +133,13 @@ app.get("/products", async (req, res) => {
         message: `successfully find all data. `,
 
     });
+    } catch(e){
+        res.json({
+            success: false,
+            message: e.message
+    
+        });
+    }
 })
 
 // get product
@@ -289,8 +303,14 @@ app.get("/orders/user/:_id", async (req, res) => {
     }
  })
 
+ if(process.env.NODE_ENV === "production"){
+    app.use(Express.static(path.join(__dirname, '..', 'client', 'build'))); 
+   
+    app.get('*', (req, res) => {
+     res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+    });
+   }
 
-// get /orders
 
 
 
