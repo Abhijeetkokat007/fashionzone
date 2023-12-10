@@ -7,10 +7,10 @@ import product from "./models/product.js";
 import order from "./models/order.js";
 // import order from "./models/order.js";
 import path from "path";
+const __dirname = path.resolve();
 
 const app = Express();
 app.use(Express.json());
-const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 5000;
 
@@ -24,6 +24,8 @@ const connectDB = async () => {
         console.log(e.message);
     }
 };
+
+
 
 // signup
 app.post("/api/signup", async (req, res) => {
@@ -251,7 +253,7 @@ app.get("/api/orders", async (req, res) => {
 // get /order/user/:_id
 app.get("/api/orders/user/:_id", async (req, res) => {
   const {_id} = req.params;
-  const order1 = await order.find({user: _id}).populate("user product")
+  const order1 = await order.find({User: _id}).populate("user product")
 
   res.json({
     success:true,
@@ -318,5 +320,4 @@ app.listen(PORT, () => {
     console.log(`server is runing ${PORT}`)
     connectDB();
 })
-
 

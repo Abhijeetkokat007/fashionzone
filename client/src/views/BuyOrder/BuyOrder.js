@@ -15,7 +15,7 @@ function BuyOrder() {
     const {id} = useParams();
     const loadOrder = async () => {
     try{
-        const response = await axios.get(`/product/${id}`)
+        const response = await axios.get(`/api/product/${id}`)
         setProduct(response?.data?.data)
     }
     catch(e){
@@ -58,7 +58,7 @@ function BuyOrder() {
         deliverycharge: deliverycharge
       }
 
-      const response = await axios.post("/order", orderDetails)
+      const response = await axios.post("/api/order", orderDetails)
       alert(response.data.message)
 
       if(response?.data?.success){

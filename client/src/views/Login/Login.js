@@ -15,7 +15,7 @@ function Login() {
     }
 
     try{
-      const response = await axios.post("/login", user)
+      const response = await axios.post("/api/login", user)
 
       alert(response?.data?.message)
   

@@ -40,7 +40,8 @@ function SignUpUser() {
       gender,
       password
     }
-    const response = await axios.post("/signup", data)
+    try{
+      const response = await axios.post("/api/signup", data)
 
     alert(response.data.message)
     if(response?.data?.success){
@@ -53,6 +54,10 @@ function SignUpUser() {
         setAddress('')
         setMobile('')
         setPassword('')
+    }
+    }
+    catch(e){
+      console.log(e.message)
     }
   }
 

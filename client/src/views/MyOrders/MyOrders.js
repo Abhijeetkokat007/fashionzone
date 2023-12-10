@@ -18,7 +18,7 @@ function MyOrders() {
   // console.log(localStoragedata);
 
   const loadData = async () => {
-    const response = await axios.get(`/orders/user/${localStoragedata?._id}`)
+    const response = await axios.get(`/api/orders/user/${localStoragedata?._id}`)
     setOrders(response?.data?.data)
     console.log(response?.data?.data)
   }
