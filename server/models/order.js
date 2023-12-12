@@ -4,10 +4,12 @@ const orderschema = new Schema ({
    user:{
     type: Schema.Types.ObjectId,
     ref: 'User',
+    required: true
    } ,
    product:{
     type: Schema.Types.ObjectId,
     ref: 'product',
+    required: true
    },
    shipingaddress:{
    type:String,
@@ -24,7 +26,7 @@ const orderschema = new Schema ({
    deliverycharge:{
       type:Number,
        require:true
-      },
+   },
 })
 
 const order = model("order", orderschema);

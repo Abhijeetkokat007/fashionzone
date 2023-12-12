@@ -20,7 +20,8 @@ function MyOrders() {
   const loadData = async () => {
     const response = await axios.get(`/api/orders/user/${localStoragedata?._id}`)
     setOrders(response?.data?.data)
-    console.log(response?.data?.data)
+    console.log(localStoragedata?._id)
+    // console.log("user data",response?.data?.data)
   }
 
   useEffect( () => {

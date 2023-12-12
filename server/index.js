@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 dotenv.config()
 import User from "./models/User.js";
 import product from "./models/product.js";
-import order from "./models/order.js";
-// import order from "./models/order.js";
+import order  from './models/order.js';
+
 import path from "path";
 const __dirname = path.resolve();
 
@@ -198,10 +198,11 @@ app.post("/api/order", async (req, res) => {
         deliverycharge
     })
    try{
-    const order1 = await neworder.save();
+    const savedata = await neworder.save();
+   
     res.json({
         success: true,
-        data: order1,
+        data: savedata,
         message: "new order  successfully."
     })
    }
@@ -239,24 +240,35 @@ app.get("/api/order/:_id", async (req, res) => {
 
 // get orders
 app.get("/api/orders", async (req, res) => {
-    const order1 = await order.find().populate("user product");
-    order1.forEach((order) => {
-        order.user.password = undefined;
-    })
+    try{
+        const order1 = await order.find();
+        // .populate("user product");
+    // order1.forEach((order) => {
+    //     order.User.password = undefined;
+    // })
     res.json({
         success:true,
         data:order1,
-        message:"all product fatched successfully."
+        message:"all order fatched successfully."
     })
+    }
+    catch(e){
+        res.json({
+            success:false,
+            message:e.message
+        })
+    }
 })
 
 // get /order/user/:_id
-app.get("/api/orders/user/:_id", async (req, res) => {
-  const {_id} = req.params;
-  const order1 = await order.find({User: _id}).populate("user product")
-
+app.get("/api/orders/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const order1 = await order.find({ user: {_id: id}}).populate('user product')
+  order1.forEach((order)=>{
+       
+  })
   res.json({
-    success:true,
+    success:"true",
     data:order1,
     message: "order fatched successfully"
   });
