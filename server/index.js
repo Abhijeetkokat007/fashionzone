@@ -7,6 +7,7 @@ import product from "./models/product.js";
 import order  from './models/order.js';
 
 import path from "path";
+import auth from "./models/auth.js";
 const __dirname = path.resolve();
 
 const app = Express();
@@ -30,7 +31,7 @@ const connectDB = async () => {
 // signup
 app.post("/api/signup", async (req, res) => {
     const { name, email, mobile, address, password, gender } = req.body;
-    const newUser = new User({
+    const newUser = new auth({
         name,
         email,
         mobile,
@@ -67,7 +68,7 @@ app.post("/api/login", async (req, res) => {
         })
     }
 
-    const user = await user.findOne({
+    const user = await auth.findOne({
         email: email,
         password: password
     })
