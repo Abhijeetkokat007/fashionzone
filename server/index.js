@@ -13,7 +13,7 @@ const __dirname = path.resolve();
 const app = Express();
 app.use(Express.json());
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000; 
 
 const connectDB = async () => {
     try{
