@@ -5,7 +5,7 @@ dotenv.config()
 
 import product from "./models/product.js";
 import order  from './models/order.js';
-
+import md5 from "md5";
 import path from "path";
 import auth from "./models/auth.js";
 const __dirname = path.resolve();
